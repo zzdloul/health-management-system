@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seecen.health.core.mapper.AssessmentAnswerMapper">
+    
+    <!-- 批量插入评估答案 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        INSERT INTO t_assessment_answer (assessment_id, question_id, answer, score)
+        VALUES
+        <foreach collection="answers" item="answer" separator=",">
+            (#{answer.assessmentId}, #{answer.questionId}, #{answer.answer}, #{answer.score})
+        </foreach>
+    </insert>
+    
+    <!-- 根据评估ID查询答案 -->
+    <select id="findByAssessmentId" parameterType="java.lang.Integer" resultType="com.seecen.health.common.entity.AssessmentAnswer">
+        SELECT * FROM t_assessment_answer WHERE assessment_id = #{assessmentId}
+    </select>
+    
+</mapper>

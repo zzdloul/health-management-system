@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seecen.health.core.mapper.AssessmentQuestionMapper">
+    
+    <!-- 根据评估类型查询启用的问卷问题 -->
+    <select id="findByAssessmentType" parameterType="java.lang.Integer" resultType="com.seecen.health.common.entity.AssessmentQuestion">
+        SELECT * FROM t_assessment_question 
+        WHERE assessment_type = #{assessmentType} AND status = 1 
+        ORDER BY sort ASC
+    </select>
+    
+</mapper>

@@ -1,0 +1,45 @@
+﻿# application-example.yml（请复制为 application.yml 并填写真实信息）
+spring:
+  application:
+    name: health_boot
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.redis.RedisReactiveAutoConfiguration
+  datasource:
+    url: jdbc:mysql://localhost:3306/it_health?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: 你的数据库用户名
+    password: 你的数据库密码
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+server:
+  port: 8003
+  servlet:
+    context-path: /api
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/**/*.xml
+  type-aliases-package: com.seecen.health.common.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    config-url: /api/v3/api-docs/swagger-config
+    url: /api/v3/api-docs
+
+logging:
+  level:
+    com.seecen.health: info
+
+oss:
+  accessKeyId: 你的阿里云AccessKey
+  accessKeySecret: 你的阿里云Secret
+  endpoint: oss-cn-hangzhou.aliyuncs.com
+  bucketName: 你的Bucket名称
